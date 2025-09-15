@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # steelcheckong
 =======
 # steel checking
@@ -37,3 +38,6 @@ npm run build
 npm run lint
 ```
 >>>>>>> 1ab194f (更改滚动距离)
+=======
+# steelcheccking
+>>>>>>> 2e3406c1a6e8f6d2fc2ffb31493d642117aac48c

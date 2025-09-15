@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 2e3406c1a6e8f6d2fc2ffb31493d642117aac48c
 lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
@@ -138,6 +141,7 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+<<<<<<< HEAD
 =======
 pnpm-debug.log*
 lerna-debug.log*
@@ -166,3 +170,5 @@ coverage
 
 .vercel
 >>>>>>> 1ab194f (更改滚动距离)
+=======
+>>>>>>> 2e3406c1a6e8f6d2fc2ffb31493d642117aac48c
