@@ -51,14 +51,14 @@ const login = async () => {
       const token = response.data.data.token;
       if (!token) throw new Error("Token 不存在，登录失败");
 
-      // ✅ 保存 JWT 到本地
+      // 保存 JWT 到本地
       localStorage.setItem("token", token);
       alert("登录成功");
     } else {
       alert("注册成功");
     }
 
-    // ✅ 动画或跳转
+    // 动画或跳转
     gsap.to(logc.value, {
       scale: 0,
       duration: 1,

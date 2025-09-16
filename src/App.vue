@@ -1,23 +1,20 @@
 <script setup>
   //lp.vue里面去添加登陆验证和历史记录
-  import { ref,onMounted,onBeforeUnmount,computed } from 'vue';
-  import { gsap } from 'gsap';
-  import * as THREE from 'three'
-  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  import service from './main.js';
-  import LittleButton from './head.vue';
-  import Title from './title.vue';
-  import pictureContainer from './picture.vue';
-  import Lbt from './Logoin.vue';
- import { contain } from 'three/src/extras/TextureUtils';
- import modell2 from "./modol.vue"
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import service from './main.js';
+import LittleButton from './head.vue';
+import Title from './title.vue';
+import pictureContainer from './picture.vue';
+import Lbt from './Logoin.vue';
+import modell2 from "./modol.vue";
  
- import introduction from './introduction.vue'
- import introduction2 from './introduction2.vue';
- import logdiv from './lp.vue'
- import axios from 'axios';
- import lun from './lunbo.vue'
+import introduction from './introduction.vue';
+import introduction2 from './introduction2.vue';
+import logdiv from './lp.vue';
+import axios from 'axios';
+import lun from './lunbo.vue';
 
   
   const box = ref(null);
@@ -284,7 +281,7 @@ onMounted(()=>{
 
   tl3.to([t1.value.$el], {
     
-    y:1600,
+    y:500,
     duration: 6,
     })
     tl4.to([i1.value.$el], {
@@ -799,9 +796,14 @@ onMounted(() => {
     </div>
    
     
-    <div ref="pg2" class="pg2" id="pg2"></div> <div ref="ts" class="ts">
-      <introduction ref="i1" id="i1" introduction="在本项⽬中，我们设计了⼀个基于机器视觉的钢铁表面检测平台，旨在应对工业质检场景中复杂多样的缺陷。我们的系统经过精⼼设计，不仅能够有效识别出缺陷的类型，如
-补丁，划痕，夹杂物等，还能对缺陷进行像素级精确定位；该模型的构建包括但不限于Mask-RCNN，ROI Align ，FPN（特征金字塔网络） ，RPN（区域生成网络）等先进算法。这样的设计考虑了深度学习技术的快速发展，以及工业部件缺陷检测不断演进的现实情况。随着技术的不断进步，实时检测的需求也不断增长。因此，构建⼀个高效精准的轻量化检测模型成为了必然的选择。"/></div>
+    <div ref="pg2" class="pg2" id="pg2"></div> 
+<div ref="ts" class="ts">
+  <div class="llt">Welcome to Steel Check </div>
+      <introduction ref="i1" id="i1" introduction="在本项⽬中，我们设计了⼀个基于机器视觉的钢铁表面检测平台，旨在应对工业质检场景中复杂多样的缺陷。
+      我们的系统经过精⼼设计，不仅能够有效识别出缺陷的类型，如补丁，划痕，夹杂物等，还能对缺陷进行像素级精确定位；该模型的构建包括但不限于Mask-RCNN，ROI Align 
+      ，FPN（特征金字塔网络） ，RPN（区域生成网络）等先进算法。这样的设计考虑了深度学习技术的快速发展，以及工业部件缺陷检测不断演进的现实情况。随着技术的不断进步，
+      实时检测的需求也不断增长。因此，构建⼀个高效精准的轻量化检测模型成为了必然的选择。"/>
+</div>
     
     
   
@@ -1491,10 +1493,9 @@ html, body {
       position: absolute;
       top: 100%;
       left: 30%;
-      width: 500px;
-      height: 500px;
+      width: 22vw;
+      height: 50vh;
       z-index: -100;
-      background-color: #fff;
       border-radius: 5%;
       background-image: url("./assets/black.png");
     }
@@ -1507,21 +1508,29 @@ html, body {
   z-index: 2; /* 确保模型在文字上方 */
 }
     #i1{
-      position: absolute;
-      top: 10%;
-      right: 25%;
-      width: 550px;
-      height:  auto;
-      background-color: #00091f;
-      padding: 80px;
-      z-index: 999999;
-      text-align: center;
-      border-radius: 5%;
-    font-weight:100;
-    font-size: 120%;
-    color: #ffffff;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    }
+  position: absolute;
+  top: 0%;
+  right: 30%;
+  width: 33vw;
+  height: auto;
+  background-color: #00091f;
+  padding: 80px;
+  z-index: 999999;
+  text-align: center;
+  border-radius: 5%;
+  /* 使用clamp()函数设置字体大小范围，随视口宽度变化 */
+  font-size: clamp(0.5rem, 2vw, 1.2rem);
+  /* 使用calc()和vw单位使字体粗细随页面缩放变化 */
+  font-weight: calc(100 + 0.5vw * 10);
+  color: #ffffff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+@media (max-width: 1500px) {
+  #i1 {
+    padding: 10px;
+  }
+}
+
     #i2 {
   position: absolute;
   top: 40%;
