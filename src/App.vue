@@ -768,8 +768,8 @@ onMounted(() => {
   <pictureContainer id="picture4" ref="container4" ></pictureContainer>
     <Title ref="t1" id="title1" title="Steel"></Title>
     <Title ref="t2" id="title2" title="Check"></Title>
-    <div class="teamlogo">
-    <img ref="teamLogo" class="teamLogo" src="@/assets/teamlogo.png" alt="Logo">
+  <div class="teamlogo" ref="teamLogo">
+    <img  class="teamLogo" src="@/assets/teamlogo.png" alt="Logo">
     <div class="tn" ref="tn">Z M T Y</div>
     <!-- 左上角图标,fixed,做两个变色?加文字? -->
   </div>
@@ -1552,30 +1552,27 @@ html, body {
   .innerBarer{
     position: fixed;
     top: 3%;
+    min-width: 40%;
         right: 30%;
         height: 100px;
         width: 30%;
-       
         display: grid;
-        display: inline-grid;
         grid-auto-flow: column;  /* 横向排列 */
         grid-template-columns: 0.1br 0.1br 0.1br 0.1br;  /* 左右两边留白 */
         grid-column-gap: 0px;  /* 列间距 */
         align-items: center;    /* 垂直居中 */
-        
-        margin: 0;
-
-  }
+}
   .headBarer.vertical .innerBarer {
   grid-auto-flow: row;
   left: 0%;
-  
+  min-width: 10px; /* 现在这个设置会生效 */
   top: 0%;
   padding: 0%;
-  width: 100%;
+  width: 100%; /* 相对于父元素的最小宽度 */
   height: 100%;
-  gap: 1rem; /* 按钮间距 */
-  padding: 400% 0; /* 上下留白 */
+  gap: 1rem;
+  /* 移除过大的内边距，这也可能导致布局问题 */
+  padding: 20px 0;
   background-color: #2222226b;
 }
     .headBarer{
@@ -1591,42 +1588,52 @@ html, body {
      }
      .headBarer.vertical {
   left: 0% !important;
-  top: 50%;
-
+  top: 0%;
   height: 100%;
-  width: 4vw;
+  /* 将固定的4vw改为最小宽度，允许扩展 */
+  min-width: 10vw;
+  max-width: 13vw;
+  width: auto; /* 让宽度根据内容自动调整 */
   transform: translateY(-50%);
   padding: 80px 0;
 }
     .tn{
-      top: 50px;
-    position: fixed;
-    width: 200px;
-    height: 30px;
-    left: 20%;
-    
-
+    top: 0%;
+    position: relative;
+    width: 80%;
+    height: 20%;
+    left: 10%;
     text-align: center;
     justify-content: center;
     font-family: "Aceh SoftRegular","Silk Serif", sans-serif;
-    font-weight: 900;
+    font-weight: clamp(400, 2vw, 600);
     color: rgb(219, 227, 234);
-    font-size: 35px;
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
     transition: all 0.3s ease-in-out;
-
     z-index: 999999999999;
     }
-    .tn.vertical{
-      left: -3.3% !important;
-      
-      font-size: smaller;
+
+    
+    @media (max-width: 1000px){
+      .tn{
+    top: 2%;
+    position: fixed;
+    width: 20vw;
+    height: 30vh;
+    left: 16%;
+    font-weight: 500;
+    font-size: 25px;
+    
     }
-    .teamLogo{
+    
+
+    }
+    .teamlogo{
       position: fixed;
       top: -100px;
-      left: 20%;
+      left: 20vw;
       height: 20vh;
-      width: 20vh;
+      width: 12vw;
       margin: 0;
       padding: 0;
       z-index: 201;
@@ -1635,13 +1642,24 @@ html, body {
       transition: all 0.3s ease-in-out;
       border-radius: 2%;
     }
-    .teamLogo.vertical{
-      left: -0.1%;
-      width: 7vh;
-      height: 7vh;
-      top: -3%;
+    .teamLogo{
+      position: relative;
+      
+      left: 0vw;
+      height: 80%;
+      width: 100%;
+      margin: 0;
+     
+      border-radius: 2%;
+    }
+    .teamlogo.vertical{
+      left: 0%;
+      width: 4%;
+      height: 5%;
+      top: 0%;
       background-color: transparent;
     }
+    
     body::-webkit-scrollbar {
   width: 0; /* 隐藏滚动条轨道 */
   background: transparent; /* WebKit 浏览器 */

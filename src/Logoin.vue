@@ -5,7 +5,8 @@
     const hbt = ref(null);
     onMounted(()=>{
         gsap.to(hbt.value,
-            {y:120,
+            {y:110,
+                x:100,
              opacity:1,
              duration: 1,
              ease: "power2.inOut"
@@ -40,7 +41,7 @@
         display: flex;
         transform-origin: right;
         justify-content: center;
-        width: 110px;   /* 宽度需大于高度 */
+        width: 10vw;   /* 宽度需大于高度 */
         height: 45px;
         border-radius: 30px; /* 高度的一半 */
         border: 5px solid #211e1e;
@@ -71,7 +72,7 @@
     #letter {
         text-align: center;
         align-items: center;
-        font-size: larger;
+        font-size: 1rem;
         font-weight: 700;
     }
 

@@ -27,17 +27,17 @@
     opacity: 0;
     top: -100px;
     position: relative;
-    width: 70px;
-    height: 32px;
-    margin: 0px;
-    padding: 4px;
+    width: 80%;
+    height: 30%;
+    margin: 10%;
+   
     
     /* 文字样式 */
     text-align: center;
     font-family: "Aceh SoftRegular","Silk Serif", sans-serif;
     font-weight: 900;
     color: rgb(219, 227, 234);
-    font-size: 18px;
+    font-size: 1rem;
     
     /* 初始状态 */
     transition: all 0.3s ease-in-out;
