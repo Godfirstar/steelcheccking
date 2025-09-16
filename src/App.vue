@@ -932,8 +932,10 @@ html, body {
   margin: 0;
   scroll-behavior: smooth; /* 平滑滚动 */
   overflow-y: scroll;
+  overflow-x: hidden; /* 禁止横向滚动 */
   scroll-snap-type: y mandatory; /* 开启纵向吸附 */
 }
+
 
 .pg1,.pg2,.pg3, .pg4, .pg5 {
   height: 100vh;               /* 每页占满一屏 */
@@ -1551,7 +1553,6 @@ html, body {
   }
   .innerBarer{
     position: fixed;
-    top: 3%;
     min-width: 40%;
         right: 30%;
         height: 100px;
@@ -1598,7 +1599,7 @@ html, body {
   padding: 80px 0;
 }
     .tn{
-    top: 0%;
+    top: -80%;
     position: relative;
     width: 80%;
     height: 20%;
@@ -1616,13 +1617,23 @@ html, body {
     
     @media (max-width: 1000px){
       .tn{
-    top: 2%;
-    position: fixed;
+    top: -80%;
     width: 20vw;
-    height: 30vh;
-    left: 16%;
+    height: 5vh;
+    left: -33%;
     font-weight: 500;
-    font-size: 25px;
+    font-size: 20px;
+    
+    }
+  }
+    @media (max-width: 800px){
+      .tn{
+    top: -100%;
+    width: 20vw;
+    height: 5vh;
+    left: -40%;
+    font-weight: 500;
+    font-size: 13px;
     
     }
     
@@ -1646,16 +1657,16 @@ html, body {
       position: relative;
       
       left: 0vw;
-      height: 80%;
+      height: 100%;
       width: 100%;
       margin: 0;
      
       border-radius: 2%;
     }
     .teamlogo.vertical{
-      left: 0%;
-      width: 4%;
-      height: 5%;
+      left: -1%;
+      width: 12%;
+      height: 10%;
       top: 0%;
       background-color: transparent;
     }
@@ -1676,7 +1687,7 @@ html, body {
     
    
     position: absolute;
-    top: 45%;
+    top: 44%;
     left: 0%;
     width: 50%;
     height: 30%;
@@ -1689,7 +1700,7 @@ html, body {
     }
     #title2{
     position: absolute;
-    top: 45%;
+    top: 44%;
     left: 13%;
     width: 50%;
     height: 30%;
@@ -1699,6 +1710,110 @@ html, body {
     font-size: 80px;
     color: #8a8383;
     z-index: 99;
+    }
+    @media (max-width: 1500px){
+      #title1{
+    top: 45%;
+    font-size: 4rem;
+    }
+    #title2{
+    position: absolute;
+    top: 45%;
+    left: 16%;
+    width: 50%;
+    height: 30%;
+    font-size: 4rem;
+    }
+    }
+    @media (max-width: 1000px){
+      #title1{
+    
+   
+    position: absolute;
+    top: 45%;
+    left: 0%;
+    width: 50%;
+    height: 30%;
+    
+    text-align: center;
+    font-weight: bolder;
+    font-size: 3rem;
+    color: #8a8383;
+    z-index: 99;
+    }
+    #title2{
+    position: absolute;
+    top: 45%;
+    left: 16%;
+    width: 50%;
+    height: 30%;
+    
+    text-align: center;
+    font-weight: bolder;
+    font-size: 3rem;
+    color: #8a8383;
+    z-index: 99;
+    }
+    }
+    @media (max-width: 800px){
+      #title1{
+    
+   
+    position: absolute;
+    top: 48%;
+    left: 0%;
+    width: 50%;
+    height: 30%;
+    
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2rem;
+    color: #8a8383;
+    z-index: 99;
+    }
+    #title2{
+    position: absolute;
+    top: 48%;
+    left: 16%;
+    width: 50%;
+    height: 30%;
+    
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2rem;
+    color: #8a8383;
+    z-index: 99;
+    }
+    }
+    @media (max-width: 500px){
+      #title1{
+    
+   
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 50%;
+    height: 30%;
+    
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1rem;
+    color: #8a8383;
+    z-index: 99;
+    }
+    #title2{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    width: 50%;
+    height: 30%;
+    
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1rem;
+    color: #8a8383;
+    z-index: 99;
+    }
     }
     #title3{
     
@@ -1718,21 +1833,64 @@ html, body {
     
     .Lbt1{
       position: fixed;
-      top: -60px;
+      top: -6vh;
       right: 20%;
       margin: 0;
       padding: 0;
       z-index: 201;
       color: #ffffff;
+      
     
     }
     .Lbt1.vertical{
-      left:0.5%;
-      top: 10%;
+      left:-4vw;
+      top: -10%;
       font-size: smaller;
-      width: 50px;
+      width: 6%;
       
     }
+    @media (max-width: 1500px){
+      .Lbt1.vertical{
+      left:-8vw;
+      top: -10%;
+      font-size: smaller;
+      width: 6%;
+      
+    }
+    }
+    @media (max-width: 1000px){
+      .Lbt1.vertical{
+      left:-9vw;
+      top: -10%;
+      font-size: smaller;
+      width: 6%;
+      
+    }
+    
+    }
+    @media (max-width: 735px){
+    
+      .Lbt1.vertical{
+      left:-13vw;
+      top: -10%;
+      font-size: smaller;
+      width: 8%;
+      
+    }
+    
+    }
+    @media (max-width: 675px){
+    
+      .Lbt1.vertical{
+      left:-15vw;
+      top: -10%;
+      font-size: smaller;
+      width: 8%;
+      
+    }
+    
+    }
+    
     #picture1{
       position: absolute;
         width: 250px;
