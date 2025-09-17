@@ -919,7 +919,7 @@ onMounted(() => {
    <div class="pg3s" ref="pg3s"></div>
    <div class="kuai1" ref="kuai1"><span class="w">在本项⽬中，我们设计了⼀个</span>基于机器视觉的钢铁表面检测平台，旨在应对工业质检场景中复杂多样的缺陷。我们的系统经过精⼼设计，不仅能够有效识别出缺陷的类型，如
     补丁，划痕，夹杂物等，还能对缺陷进行像素级精确定位；该模型的构建包括但不限于Mask-RCNN，ROI Ali
-  <div class="zhuangshi"></div></div>
+    <div class="zhuangshi"></div></div>
    <div class="kuai2" ref="kuai2"></div>
    <div class="kuai3" ref="kuai3"></div>
    <div class="lines2" ref="lines2" id="lines2"></div>
