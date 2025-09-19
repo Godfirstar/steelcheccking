@@ -110,7 +110,7 @@ onMounted(() => {
       scale: 1,
       opacity: 1,
       rotate: 15,
-      y: 1000,
+      y: 600,
 
       duration: 4,
       ease: 'power2.inOut',
@@ -134,21 +134,7 @@ onMounted(() => {
     '+1'
   )
 })
-// 直接定义 HTML 字符串
-const introText = `
-  <span class="word" style="left: -50%; top: 10%;">自动化</span>
-  
-  <span class="word" style="left: -85%; top: 40%;">高精度,</span>
 
-  <span class="word" style="left: -60%; top: 70%;">数据驱动决策</span>
-
-  <span class="word" style="left: -70%; top: 100%;">工业级抗干扰.</span>
-`
-const introText2 = `
-  <span class="word" style="left: 100%; top: 20%;">实时</span>
-  <span class="word" style="left: 150%; top: 50%;">跨学科</span>
-  <span class="word" style="left: 100%; top: 80%;">持续学习迭代</span>
-`
 const tl9 = gsap.timeline({})
 const tl10 = gsap.timeline({})
 const tl11 = gsap.timeline({})
@@ -200,6 +186,10 @@ onMounted(() => {
     color: 'rgb(109, 108, 108)',
     duration: 8,
   })
+  tl1.to([i1.value.$el], {
+    scale: 1,
+    duration: 8,
+  })
 
   tl1.to(
     red.value,
@@ -228,27 +218,19 @@ onMounted(() => {
     scrollTrigger: {
       trigger: ts.value,
       start: '-=200',
-      end: '+=700', // 滚动300px后结束
+      end: '+=760', // 滚动300px后结束
       scrub: true, // 动画与滚动联动
-      pin: [i1.value.$el],
-    },
-  })
-  const tl4 = gsap.timeline({
-    scrollTrigger: {
-      trigger: ts.value,
-      start: '-=200',
-      end: '+=700', // 滚动300px后结束
-      scrub: true, // 动画与滚动联动
-      pin: [ts.value, t1.value.$el],
+      pin: [ts.value, i1.value.$el, t1.value.$el],
     },
   })
 
   tl3.to([t1.value.$el], {
     y: 500,
-    duration: 6,
+    duration: 56,
   })
-  tl4.to([i1.value.$el], {
-    duration: 6,
+  tl3.to([i1.value.$el], {
+    duration: 16,
+    scale: 0,
   })
 })
 
@@ -540,24 +522,25 @@ const uploadFile = async () => {
     alert('操作失败: ' + (error.response?.data?.message || error.message))
   }
 }
+function scrollToSection0() {
+  const target = document.getElementById('pg1')
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 function scrollToSection1() {
-  const target = document.getElementById('p1')
+  const target = document.getElementById('pg2')
   if (target) {
     target.scrollIntoView({ behavior: 'smooth' })
   }
 }
 function scrollToSection2() {
-  const target = document.getElementById('i1')
+  const target = document.getElementById('pg3')
   if (target) {
     target.scrollIntoView({ behavior: 'smooth' })
   }
 }
-function scrollToSection3() {
-  const target = document.getElementById('pg5')
-  if (target) {
-    target.scrollIntoView({ behavior: 'smooth' })
-  }
-}
+
 function scrollToSection4() {
   const target = document.getElementById('pg4')
   if (target) {
@@ -699,10 +682,10 @@ onMounted(() => {
 
   <div ref="headBar" class="headBarer" @scroll.passive="handleScroll">
     <div ref="innerBar" class="innerBarer">
-      <LittleButton lead="Home" @click="scrollToSection1" />
-      <LittleButton lead="介绍" @click="scrollToSection2" />
-      <LittleButton lead="检测" @click="scrollToSection4" />
-      <LittleButton lead="记录" @click="scrollToSection3" />
+      <LittleButton lead="Home" @click="scrollToSection0" />
+      <LittleButton lead="介绍" @click="scrollToSection1" />
+      <LittleButton lead="检测" @click="scrollToSection2" />
+      <LittleButton lead="记录" @click="scrollToSection4" />
       <!-- 改正中,交互动画 -->
     </div>
   </div>
@@ -715,7 +698,9 @@ onMounted(() => {
 
   <div ref="pg1" class="pg1" id="pg1"></div>
 
-  <div ref="pg2" class="pg2" id="pg2"></div>
+  <div ref="pg2" class="pg2" id="pg2">
+    <page3 />
+  </div>
   <div ref="ts" class="ts">
     <div class="llt">Welcome to Steel Check</div>
     <introduction
@@ -730,9 +715,6 @@ onMounted(() => {
 
   <!-- 修改后的 HTML 结构 -->
   <div ref="pg3" class="pg3" id="pg3">
-    <page3 />
-  </div>
-  <div ref="pg4" class="pg4" id="pg4">
     <div class="tiao1" ref="tiao1"></div>
     <div class="tiao2" ref="tiao2"></div>
     <div class="tiao3" ref="tiao3"></div>
@@ -784,10 +766,7 @@ onMounted(() => {
       ></div>
     </div>
   </div>
-  <lun />
-
-  <div class="jiantou" ref="jiantou"></div>
-  <div ref="pg5" class="pg5" id="pg5">
+  <div ref="pg4" class="pg4" id="pg4">
     <div class="carousel-container">
       <h3 id="history">History</h3>
 
@@ -816,6 +795,10 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <lun />
+
+  <div class="jiantou" ref="jiantou"></div>
+
   <div class="lines" ref="lines" id="lines"></div>
   <div class="pg2s" ref="pg2s"></div>
   <div class="pg3s" ref="pg3s"></div>
@@ -839,14 +822,12 @@ body {
   scroll-behavior: smooth; /* 平滑滚动 */
   overflow-y: scroll;
   overflow-x: hidden; /* 禁止横向滚动 */
-  scroll-snap-type: y mandatory; /* 开启纵向吸附 */
 }
 
 .pg1,
 .pg2,
 .pg3,
-.pg4,
-.pg5 {
+.pg4 {
   height: 100vh; /* 每页占满一屏 */
   scroll-snap-align: start; /* 滚动时对齐到顶 */
 }
@@ -924,7 +905,7 @@ body {
 .pg2s {
   position: absolute;
 
-  top: 110%;
+  top: 90%;
   right: 0%;
   width: 5%;
   height: 5%;
@@ -932,7 +913,7 @@ body {
 .pg3s {
   position: absolute;
 
-  top: 200%;
+  top: 100%;
   right: 0%;
   width: 5%;
   height: 5%;
@@ -967,30 +948,13 @@ body {
   transform-origin: top;
   z-index: -5;
 }
-.kuai1 {
-  position: fixed;
-  top: 80%;
-  opacity: 0;
-  right: 4%;
-  width: 13%;
-  height: auto;
-  background-color: #fcfc48;
-  padding: 30px;
-  z-index: 0;
-  text-align: center;
-  border-radius: 5%;
-  scale: 0;
-  font-weight: 900px;
-  font-size: 100%;
-  color: #000000;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+
 .kuai1 {
   position: fixed;
   top: -60%;
   opacity: 0;
   right: 4%;
-  width: 13%;
+  width: 15vw;
   height: auto;
   background-color: #fcfc48;
   padding: 30px;
@@ -999,7 +963,8 @@ body {
   border-radius: 5%;
   scale: 0;
   font-weight: 900px;
-  font-size: 100%;
+  font-size: 1vw;
+  min-width: 100px;
   color: #000000;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -1372,17 +1337,9 @@ body {
   background-color: rgba(74, 118, 168, 0.87);
   position: absolute;
   left: 0%;
-  top: 361%;
+  top: 300vh;
   width: 100vw;
   height: 100vh;
-}
-.pg5 {
-  background-color: rgba(102, 168, 74, 0.87);
-  position: absolute;
-  left: 0%;
-  top: 461%;
-  width: 100vw;
-  height: 120vh;
 }
 
 .ts {
@@ -1395,18 +1352,12 @@ body {
   border-radius: 5%;
   background-image: url('./assets/black.png');
 }
-.ts2 {
-  position: absolute;
-  top: 5%;
-  left: -60%;
-  width: 360px;
-  height: 360px;
-  z-index: 2; /* 确保模型在文字上方 */
-}
+
 #i1 {
   position: absolute;
-  top: 0%;
-  right: 30%;
+  scale: 0;
+  top: 30%;
+  left: 30%;
   width: 33vw;
   height: auto;
   background-color: #00091f;
@@ -1554,10 +1505,10 @@ body {
 }
 .teamLogo {
   position: relative;
-
-  left: 0vw;
+  top: 50%;
+  left: 1vw;
   height: 100%;
-  width: 100%;
+  width: 80%;
   margin: 0;
 
   border-radius: 2%;
@@ -1580,7 +1531,7 @@ body {
   padding: 0;
   font-family: 'Aceh SoftRegular', 'Microsoft YaHei', sans-serif;
   background-color: #d6d7d4;
-  height: 600vh;
+  height: 400vh;
 }
 #title1 {
   position: absolute;

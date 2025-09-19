@@ -3,13 +3,9 @@
     <div v-if="!isMobile()">
       <div class="bg-element bg3"></div>
       <div class="bb"></div>
-      <div class="LingRui">LINGRUI</div>
+      <div class="LingRui">Steel Checking</div>
       <div class="line1"></div>
-    </div>
-
-    <!-- 外部黑框容器 -->
-    <div class="outer-container">
-      <div class="display-text">{{ displayText }}</div>
+      <div class="line2"></div>
     </div>
 
     <!-- 三个块的容器 -->
@@ -54,8 +50,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, Ref, UnwrapRef } from 'vue'
-// Simple isMobile implementation
+import { ref, reactive, onMounted, onBeforeUnmount, Ref, UnwrapRef } from 'vue'
+
 const isMobile = () =>
   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
@@ -75,25 +71,53 @@ const currentTarget: Ref<string> = ref('')
 
 const processItems: UnwrapRef<ProcessItem[]> = reactive([
   {
-    title: '第一轮笔试',
-    text: '大二的同学，请先联系对应方向管理员',
-    time: '9.19',
-    tn: '第一轮笔试',
-    ti: '任一方向',
+    title: '自动化',
+    text: '让流程更高效，减少人为干预',
+    time: 'Auto',
+    tn: '自动化',
+    ti: '高效执行',
   },
   {
-    title: '第一轮面试',
-    text: '大概在十月底，对第一轮笔试优秀的同学进行面试，通过者即可以正式加入凌睿工作室大家庭',
-    time: '暂定',
-    tn: '第一轮面试',
-    ti: '通过笔试的同学',
+    title: '高精度',
+    text: '精准识别与检测，误差率大幅降低',
+    time: 'Accurate',
+    tn: '高精度',
+    ti: '精准结果',
   },
   {
-    title: 'Offer',
-    text: '邮件或招新群公告发放',
-    time: '面试后',
-    tn: 'Offer发放',
-    ti: '通过面试的同学',
+    title: '数据驱动决策',
+    text: '依托大数据与算法进行智能分析',
+    time: 'Data',
+    tn: '数据驱动',
+    ti: '智能决策',
+  },
+  {
+    title: '工业级抗干扰',
+    text: '在复杂环境中依旧稳定可靠',
+    time: 'Robust',
+    tn: '抗干扰',
+    ti: '工业级稳定性',
+  },
+  {
+    title: '实时',
+    text: '即时反馈与处理，毫秒级响应',
+    time: 'Realtime',
+    tn: '实时',
+    ti: '快速响应',
+  },
+  {
+    title: '跨学科',
+    text: '融合机械、材料、AI、控制等多领域知识',
+    time: 'Inter',
+    tn: '跨学科',
+    ti: '协同创新',
+  },
+  {
+    title: '持续学习迭代',
+    text: '系统不断优化，越用越聪明',
+    time: 'Evolve',
+    tn: '持续学习',
+    ti: '迭代进化',
   },
 ])
 
@@ -105,15 +129,11 @@ const selectItem = (index: number): void => {
 const updateDisplay = (index: number): void => {
   const item = processItems[index]
 
-  // 添加淡入淡出效果
+  // 清空先淡出
   const elements: Ref<string>[] = [displayText, currentTime, currentTitle, currentTarget]
+  elements.forEach((el) => (el.value = ''))
 
-  // 淡出
-  elements.forEach((el) => {
-    el.value = ''
-  })
-
-  // 延迟后淡入新内容
+  // 延迟后更新
   setTimeout(() => {
     displayText.value = item.text
     currentTime.value = item.time
@@ -122,9 +142,22 @@ const updateDisplay = (index: number): void => {
   }, 150)
 }
 
+let intervalId: number | null = null
+
 onMounted(() => {
-  // 初始选中第一个项目
   selectItem(0)
+
+  // 自动轮播，每 3 秒切换一个
+  intervalId = window.setInterval(() => {
+    const nextIndex = (selectedIndex.value + 1) % processItems.length
+    selectItem(nextIndex)
+  }, 3000)
+})
+
+onBeforeUnmount(() => {
+  if (intervalId) {
+    clearInterval(intervalId)
+  }
 })
 </script>
 
@@ -138,12 +171,21 @@ onMounted(() => {
 }
 
 .line1 {
-  background-color: #8f8f8f;
+  background-color: #cfcfcf;
   position: absolute;
   bottom: 48vh;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: 70%;
   height: 3px;
+  z-index: 999;
+}
+.line2 {
+  background-color: #cfcfcf;
+  position: absolute;
+  top: 0;
+  left: 82vw;
+  width: 3px;
+  height: 100%;
   z-index: 999;
 }
 
@@ -153,7 +195,7 @@ onMounted(() => {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 15vh;
+  height: 25vh;
   z-index: 999;
 }
 
@@ -189,16 +231,43 @@ onMounted(() => {
   transition: opacity 0.3s ease;
 }
 
-/* 块容器样式 */
+/* 块容器样式 - 改为竖排时间轴 */
 .blocks-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-  width: 100%;
-  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   position: absolute;
-  bottom: 20vh;
-  left: 10vh;
+  top: 2vh;
+  left: 15%;
+  transform: translateX(-50%);
+  max-width: 260px;
+  align-items: center;
+}
+
+/* 竖直连线 */
+.blocks-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background-color: #165dff;
+  transform: translateX(-50%);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* 每个块样式保持 */
+.block-item {
+  position: relative;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  min-width: 160px;
 }
 
 @media (min-width: 768px) {
@@ -305,30 +374,21 @@ onMounted(() => {
 }
 
 .time {
-  font-size: 180px;
+  font-size: 150px;
   font-weight: 800;
   color: #294f8c;
   position: absolute;
   right: 0vh;
-  top: 25vh;
-}
-
-.tn {
-  font-size: 50px;
-  font-weight: 800;
-  color: #ffffff;
-  position: absolute;
-  left: 10vh;
-  top: 35vh;
+  top: 30vh;
 }
 
 .ti {
-  font-size: 30px;
+  font-size: 50px;
   font-weight: 800;
   position: absolute;
-  left: 10vh;
-  top: 45vh;
-  color: #4b5563;
+  right: 0vh;
+  top: 43vh;
+  color: #ffffff;
 }
 
 /* 背景装饰元素 */
